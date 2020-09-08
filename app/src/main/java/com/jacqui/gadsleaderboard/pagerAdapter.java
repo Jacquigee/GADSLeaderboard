@@ -29,6 +29,6 @@ public class pagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return numOfTabs;
+        return numOfTabs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ;
     }
 }
