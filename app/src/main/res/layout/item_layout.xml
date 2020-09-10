@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-    android:id="@+id/learningCardView"
+    android:id="@+id/itemCardView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -23,21 +23,25 @@
             android:id="@+id/learnerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/learning"
+            android:layout_marginTop="16dp"
             android:textSize="26sp"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/learnerBadge"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/learnerScore"
+            android:id="@+id/learnerDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:layout_toEndOf="@+id/learnerBadge"
-            android:text="@string/learning"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toEndOf="@+id/learnerBadge"
             app:layout_constraintTop_toBottomOf="@+id/learnerName" />
 
-    </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.cardview.widget.CardView>

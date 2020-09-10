@@ -3,10 +3,22 @@ package com.jacqui.gadsleaderboard;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.jacqui.gadsleaderboard.APIs.LeaderboardServiceBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +26,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class SkillsFragment extends Fragment {
+
+    ArrayList<SkillIQ> skillsIq = new ArrayList<>();
+    private SkillsRecyclerAdapter skillsAdapter;
+    private RecyclerView skillsRecyclerView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +75,29 @@ public class SkillsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_skills, container, false);
+        //return inflater.inflate(R.layout.fragment_skills, container, false);
+        View view = inflater.inflate(R.layout.fragment_learning, container, false);
+
+        final RecyclerView learningRecyclerView = (RecyclerView) view.findViewById(R.id.learningRecyclerView);
+        final LinearLayoutManager learningLayoutManager = new LinearLayoutManager(getContext());
+        learningRecyclerView.setLayoutManager(learningLayoutManager);
+
+        RequestInterface requestInterface = LeaderboardServiceBuilder.buildApiService(RequestInterface.class);
+        Call<List<SkillIQ>> call = requestInterface.getSkillsJson();
+
+        call.enqueue(new Callback<List<SkillIQ>>() {
+            @Override
+            public void onResponse(Call<List<SkillIQ>> call, Response<List<SkillIQ>> response) {
+                skillsIq = new ArrayList<>(response.body());
+                skillsAdapter = new SkillsRecyclerAdapter(getContext(), skillsIq);
+                skillsRecyclerView.setAdapter(skillsAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<SkillIQ>> call, Throwable t) {
+                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return view;
     }
 }

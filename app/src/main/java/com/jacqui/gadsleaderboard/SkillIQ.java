@@ -3,14 +3,13 @@ package com.jacqui.gadsleaderboard;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LearningHours {
-
+public class SkillIQ {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("hours")
+    @SerializedName("score")
     @Expose
-    private Integer hours;
+    private String score;
     @SerializedName("country")
     @Expose
     private String country;
@@ -18,31 +17,22 @@ public class LearningHours {
     @Expose
     private String badgeUrl;
 
-//    public LearningHours(String name, int hours, String country, String badgeUrl) {
-//        this.name = name;
-//        this.hours = hours;
-//        this.country = country;
-//        this.badgeUrl = badgeUrl;
-//    }
-
     public String getName() {
 
         return name;
     }
 
     public void setName(String name) {
-
         this.name = name;
     }
 
-    public Integer getHours() {
-
-        return hours;
+    public String getScore() {
+        return score;
     }
 
-    public void setHours(Integer hours) {
+    public void setScore(String score) {
 
-        this.hours = hours;
+        this.score = score;
     }
 
     public String getCountry() {

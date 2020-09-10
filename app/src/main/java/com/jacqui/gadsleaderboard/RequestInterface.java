@@ -9,4 +9,6 @@ interface   RequestInterface {
     @GET("api/hours")
     Call<List<LearningHours>> getLearningJson();
 
+    @GET("api/skilliq")
+    Call<List<SkillIQ>> getSkillsJson();
 }

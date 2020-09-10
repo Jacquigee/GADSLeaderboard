@@ -11,14 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.jacqui.gadsleaderboard.APIs.LeaderboardServiceBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LearningFragment extends Fragment {
 
     ArrayList<LearningHours>  learningHours = new ArrayList<>();
-    private RecyclerViewAdapter recyclerViewAdapter;
+    private LearningRecyclerAdapter learnerViewAdapter;
     private RecyclerView learningRecyclerView;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -65,34 +66,41 @@ public class LearningFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
 
-        learningRecyclerView = (RecyclerView).findViewById(R.id.learningRecyclerView);
-        learningRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        getLearnerResponse();
+        //getLearnerResponse();
 
 
     }
 
-    private void getLearnerResponse() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://gadsapi.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        //return inflater.inflate(R.layout.fragment_learning, container, false);
 
-        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+        View view = inflater.inflate(R.layout.fragment_learning, container, false);
+
+        final RecyclerView learningRecyclerView = (RecyclerView) view.findViewById(R.id.learningRecyclerView);
+        //learningRecyclerView.setHasFixedSize(true);
+        //learningRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        final LinearLayoutManager learningLayoutManager = new LinearLayoutManager(getContext());
+        learningRecyclerView.setLayoutManager(learningLayoutManager);
+
+        RequestInterface requestInterface = LeaderboardServiceBuilder.buildApiService(RequestInterface.class);
         Call<List<LearningHours>> call = requestInterface.getLearningJson();
+
 
         call.enqueue(new Callback<List<LearningHours>>() {
             @Override
             public void onResponse(Call<List<LearningHours>> call, Response<List<LearningHours>> response) {
                 learningHours=new ArrayList<>(response.body());
-                recyclerViewAdapter = new RecyclerViewAdapter(getContext(),learningHours);
-                learningRecyclerView.setAdapter(recyclerViewAdapter);
-                Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+                learnerViewAdapter = new LearningRecyclerAdapter(getContext(),learningHours);
+                learningRecyclerView.setAdapter(learnerViewAdapter);
+                //Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -100,12 +108,7 @@ public class LearningFragment extends Fragment {
                 Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_learning, container, false);
+        return view;
     }
 }
