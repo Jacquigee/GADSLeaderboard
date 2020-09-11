@@ -69,6 +69,7 @@ public class SubmitForm extends AppCompatActivity {
 
     public void createSubmitConfirmationDialog() {
         dialog = new Dialog(this);
+
         dialog.setContentView(R.layout.submit_dialog_window);
         // Cancel imageButton
         ImageButton closeIBtn = dialog.findViewById(R.id.cancellationButton);
@@ -108,7 +109,7 @@ public class SubmitForm extends AppCompatActivity {
 
                         }
                         else{
-                            //createResponseDialog(R.drawable.ic_baseline_warning_24, R.string.submission_failure);
+                            createResponseDialog(R.drawable.warning_image, R.string.submission_failed);
                             Toast.makeText(SubmitForm.this, "Response Error" + response.errorBody(), Toast.LENGTH_LONG).show();
                         }
                     }
@@ -116,7 +117,7 @@ public class SubmitForm extends AppCompatActivity {
                     @Override
                     public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
                         // Calls method to create and show failure message dialog
-                        createResponseDialog(R.drawable.warning_image, R.string.submission_failed);
+                        //                                                                                                                                                                                                                                                              createResponseDialog(R.drawable.warning_image, R.string.submission_failed);
                         Toast.makeText(SubmitForm.this, t.getMessage(), Toast.LENGTH_LONG).show();
 
                 }

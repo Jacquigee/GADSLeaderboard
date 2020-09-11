@@ -20,7 +20,7 @@ class SkillsRecyclerAdapter extends RecyclerView.Adapter<SkillsRecyclerAdapter.V
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public SkillsRecyclerAdapter(Context context, ArrayList<SkillIQ> skillsIq){
+    public SkillsRecyclerAdapter(Context context, ArrayList<SkillIQ> skillIq){
         this.skillIq = skillIq;
         this.context = context;
     }
@@ -28,19 +28,20 @@ class SkillsRecyclerAdapter extends RecyclerView.Adapter<SkillsRecyclerAdapter.V
     @NonNull
     @Override
     public SkillsRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
         return new SkillsRecyclerAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SkillsRecyclerAdapter.ViewHolder holder, int position) {
         holder.learnerName.setText(skillIq.get(position).getName());
-        holder.learnerDetails.setText(skillIq.get(position).getScore() + "learning hours" + skillIq.get(position).getCountry());
+        holder.learnerDetails.setText(skillIq.get(position).getScore() + " " + "Skill IQ Score" + ", " + skillIq.get(position).getCountry());
         Picasso.get().load(skillIq.get(position).getBadgeUrl()).into(holder.learnerBadge);
     }
 
     @Override
     public int getItemCount() {
+
         return skillIq.size();
     }
 

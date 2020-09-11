@@ -36,13 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
         //TabLayout
         TabLayout tabLayout = findViewById(R.id.tabLayout);
-        TabItem tabLearning = findViewById(R.id.learningTab);
-        TabItem tabSkills = findViewById(R.id.skillsTab);
+//        TabItem tabLearning = findViewById(R.id.learningTab);
+//        TabItem tabSkills = findViewById(R.id.skillsTab);
         final ViewPager viewPager = findViewById(R.id.viewPager);
 
         //Viewpager Adapter
-        pagerAdapter pagerAdapter = new pagerAdapter(getSupportFragmentManager(),
-                tabLayout.getTabCount());
+        pagerAdapter pagerAdapter = new pagerAdapter(getSupportFragmentManager());
+        pagerAdapter.addFragment(new LearningFragment(),getString(R.string.learning));
+        pagerAdapter.addFragment(new LearningFragment(),getString(R.string.skill_iq));
 
         viewPager.setAdapter(pagerAdapter);
 

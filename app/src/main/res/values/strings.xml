@@ -13,6 +13,8 @@
     <string name="yes">Yes</string>
     <string name="submission_successful">Submission Successful</string>
     <string name="submission_failed">Submission not Successful</string>
+    <string name="todo">TODO</string>
+    <string name="submission_not_successfull">Submission not successfull</string>
 
 
 </resources>

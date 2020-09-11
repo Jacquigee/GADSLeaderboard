@@ -52,6 +52,6 @@ public class SkillIQ {
 
     public void setBadgeUrl(String badgeUrl) {
 
-        this.badgeUrl = badgeUrl;
+                                                                                                                                                                                    this.badgeUrl = badgeUrl;
     }
 }

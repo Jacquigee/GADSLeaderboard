@@ -21,21 +21,21 @@ public class LearningRecyclerAdapter extends RecyclerView.Adapter<LearningRecycl
     private LayoutInflater layoutInflater;
 
     public LearningRecyclerAdapter(Context context, ArrayList<LearningHours> learningHours){
-        this.learningHours = learningHours;
+        this.learningHours = learning                                                                                                                                                           Hours;
         this.context = context;
     }
 
     @NonNull
     @Override
     public LearningRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
         return new LearningRecyclerAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull LearningRecyclerAdapter.ViewHolder holder, int position) {
         holder.learnerName.setText(learningHours.get(position).getName());
-        holder.learnerDetails.setText(learningHours.get(position).getHours() + "learning hours" + learningHours.get(position).getCountry());
+        holder.learnerDetails.setText(learningHours.get(position).getHours() + " " + "learning hours" + ", " +  learningHours.get(position).getCountry());
         Picasso.get().load(learningHours.get(position).getBadgeUrl()).into(holder.learnerBadge);
     }
 

@@ -76,6 +76,7 @@ public class SkillsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_skills, container, false);
+
         View view = inflater.inflate(R.layout.fragment_skills, container, false);
 
         final RecyclerView SkillsRecyclerView= (RecyclerView) view.findViewById(R.id.recyclerSkills);
@@ -83,14 +84,16 @@ public class SkillsFragment extends Fragment {
         SkillsRecyclerView.setLayoutManager(skillsLayoutManager);
 
         RequestInterface requestInterface = LeaderboardServiceBuilder.buildApiService(RequestInterface.class);
-        Call<List<SkillIQ>> call = requestInterface.getSkillsJson();
+        Call<List<SkillIQ>> call = requestInterface.get                                                                                                                                                                                                                                                                                                                                                                                                                     SkillsJson();
 
         call.enqueue(new Callback<List<SkillIQ>>() {
             @Override
             public void onResponse(Call<List<SkillIQ>> call, Response<List<SkillIQ>> response) {
                 skillsIq = new ArrayList<>(response.body());
                 skillsAdapter = new SkillsRecyclerAdapter(getContext(), skillsIq);
-                skillsRecyclerView.setAdapter(skillsAdapter);
+                SkillsRecyclerView.setAdapter(skillsAdapter);
+                Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

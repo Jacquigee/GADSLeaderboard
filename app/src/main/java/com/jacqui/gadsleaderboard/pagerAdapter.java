@@ -1,34 +1,42 @@
 package com.jacqui.gadsleaderboard;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class pagerAdapter extends FragmentPagerAdapter {
 
-    private int numOfTabs;
+    private final List<Fragment> mFragmentList = new ArrayList<>();
+    private final List<String> mFragmentTitleList = new ArrayList<>();
 
-    public pagerAdapter(FragmentManager fm, int numOfTabs){
-        super(fm);
-        this.numOfTabs = numOfTabs;
+    //private int numOfTabs;
+
+    public pagerAdapter(FragmentManager manager){
+        super(manager);
+        //this.numOfTabs = numOfTabs;
     }
 
     @Override
     public Fragment getItem(int position) {
-
-        switch (position){
-            case 0:
-                return new LearningFragment();
-            case 1:
-                return new SkillsFragment();
-            default:
-                return null;
-        }
+        return  mFragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return numOfTabs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ;
+        return mFragmentList.size();
+    }
+    public  void addFragment(Fragment fragment, String title){
+        mFragmentList.add(fragment);
+        mFragmentTitleList.add(title);
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mFragmentTitleList.get(position);
     }
 }

@@ -85,8 +85,6 @@ public class LearningFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_learning, container, false);
 
         final RecyclerView learningRecyclerView = (RecyclerView) view.findViewById(R.id.learningRecyclerView);
-        //learningRecyclerView.setHasFixedSize(true);
-        //learningRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         final LinearLayoutManager learningLayoutManager = new LinearLayoutManager(getContext());
         learningRecyclerView.setLayoutManager(learningLayoutManager);
 
@@ -99,8 +97,8 @@ public class LearningFragment extends Fragment {
             public void onResponse(Call<List<LearningHours>> call, Response<List<LearningHours>> response) {
                 learningHours=new ArrayList<>(response.body());
                 learnerViewAdapter = new LearningRecyclerAdapter(getContext(),learningHours);
-                learningRecyclerView.setAdapter(learnerViewAdapter);
-                //Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+                learningRecycler                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        View.setAdapter(learnerViewAdapter);
+                Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#000000">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -40,7 +41,8 @@
                 android:backgroundTint="#000000"
                 app:layout_constraintEnd_toStartOf="@id/formLogo"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/abc_vector_test" />
+                app:srcCompat="@drawable/abc_vector_test"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:id="@+id/project_submission_textView"
@@ -63,6 +65,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/project_submission_textView" />
+
+            <!--            <View-->
+<!--                android:id="@+id/submitDivider"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:background="#FBC02D"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/project_submission_textView" />-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
